@@ -74,10 +74,32 @@ Qi4j is pronounced "chee for jay", so PlayQi is pronouced "play chee".
 
 ### Installation
 
-* Add ````https://oss.sonatype.org/content/repositories/snapshots/```` and ````https://repository-qi4j.forge.cloudbees.com/snapshot/```` repositories as resolvers to your ````project/Build.scala```` ;
-* add ````"org.codeartisans" %% "playqi" % "1.0"```` and ````"org.qi4j.core" %% "org.qi4j.core.runtime" % "2.0"```` to your dependencies in ````project/Build.scala```` ;
+* Add ````https://repository-qi4j.forge.cloudbees.com/release/```` repository as resolver to your ````project/Build.scala```` ;
+* add ````"org.codeartisans" % "playqi" % "1.0"```` and ````"org.qi4j.core" % "org.qi4j.core.runtime" % "2.0"```` to your dependencies in ````project/Build.scala```` ;
 * add ````1500:org.codeartisans.playqi.PlayQiPlugin```` to your  ````conf/play.plugins````.
 
+Example;
+
+````
+object ApplicationBuild extends Build {
+
+  val appName         = "barn"
+  val appVersion      = "1.0-SNAPSHOT"
+
+  val appDependencies = Seq(
+    // Add your project dependencies here,
+    javaCore,
+    "org.codeartisans" % "playqi" % "1.0",
+    "org.qi4j.core" % "org.qi4j.core.runtime" % "2.0"
+  )
+
+  val main = play.Project(appName, appVersion, appDependencies).settings(
+      resolvers += "Qi4j repository" at "https://repository-qi4j.forge.cloudbees.com/release/"
+  )
+
+}
+
+````
 
 ### Application Assembly
 
